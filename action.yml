@@ -33,7 +33,7 @@ inputs:
   body:
     description: 'The body of the pull request'
     required: false
-    default: "This is an automated pull request by [paygoc6/action-pull-request-another-repo](https://github.com/paygoc6/action-pull-request-another-repo)."
+    default: "This is an automated pull request by [haiiliin/action-pull-request-another-repo](https://github.com/haiiliin/action-pull-request-another-repo)."
 runs:
   using: 'docker'
   image: 'Dockerfile'
