@@ -14,7 +14,7 @@ This GitHub Action copies a folder from the current repository to a location in 
           uses: actions/checkout@v2
 
         - name: Create pull request
-          uses: haiiliin/action-pull-request-another-repo@v1.0.1
+          uses: haiiliin/action-pull-request-another-repo@v1.0.3
           env:
             API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
           with:
