@@ -38,6 +38,8 @@ This GitHub Action copies a folder from the current repository to a location in 
 * destination_base_branch: [optional] The branch into which you want your code merged. Default is `main`.
 * destination_head_branch: The branch to create to push the changes. Cannot be `master` or `main`.
 * pull_request_reviewers: [optional] The pull request reviewers. It can be only one (just like 'reviewer') or many (just like 'reviewer1,reviewer2,...')
+* title: [optional] The pull request title. Default is 'Update from ${{ github.ref }}'
+* body: [optional] The pull request body. Default is 'This is an automated pull request by [haiiliin/action-pull-request-another-repo](https://github.com/haiiliin/action-pull-request-another-repo).'
 
 ## ENV
 * API_TOKEN_GITHUB: You must create a personal access token in you account. Follow the link:
