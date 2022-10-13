@@ -14,7 +14,7 @@ This GitHub Action copies a folder from the current repository to a location in 
           uses: actions/checkout@v2
 
         - name: Create pull request
-          uses: paygoc6/action-pull-request-another-repo@v1.0.1
+          uses: haiiliin/action-pull-request-another-repo@v1.0.1
           env:
             API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
           with:
@@ -26,6 +26,8 @@ This GitHub Action copies a folder from the current repository to a location in 
             user_email: 'user-name@paygo.com.br'
             user_name: 'user-name'
             pull_request_reviewers: 'reviewers'
+            title: 'title'
+            body: 'body'
 
 ## Variables
 * source_folder: The folder to be moved. Uses the same syntax as the `cp` command. Incude the path for any files not in the repositories root directory.
