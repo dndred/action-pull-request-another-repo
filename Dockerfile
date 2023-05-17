@@ -7,7 +7,7 @@ RUN wget -q  https://api.github.com/repos/cli/cli/releases/latest \
     && mv gh*/bin/gh /usr/local/bin/ \
     && rm -fr *
 
-RUN apk add nodejs --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main --allow-untrusted
+RUN apk add nodejs yarn --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main --allow-untrusted
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
