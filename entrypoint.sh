@@ -3,13 +3,6 @@
 set -e
 set -x
 
-echo "TEST TEST TEST TEST TEST"
-
-if [ -z "$INPUT_SOURCE_FOLDER" ]
-then
-  echo "Source folder must be defined"
-  return -1
-fi
 
 if [ $INPUT_DESTINATION_HEAD_BRANCH == "main" ] || [ $INPUT_DESTINATION_HEAD_BRANCH == "master"]
 then
@@ -32,13 +25,11 @@ git config --global user.email "$INPUT_USER_EMAIL"
 git config --global user.name "$INPUT_USER_NAME"
 
 echo "Cloning destination git repository"
-git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR"
+git clone clone --depth 1  --branch $INPUT_DESTINATION_HEAD_BRANCH "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR"
 
-echo "Copying contents to git repo"
-mkdir -p $CLONE_DIR/$INPUT_DESTINATION_FOLDER/
-cp -r $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER/"
 cd "$CLONE_DIR"
-git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
+touch CLONE_DIR
+
 
 echo "Adding git commit"
 git add .
