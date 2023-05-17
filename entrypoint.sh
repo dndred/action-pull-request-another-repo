@@ -21,9 +21,9 @@ echo "Cloning destination git repository"
 git clone --depth 1  --branch $INPUT_DESTINATION_HEAD_BRANCH "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR"
 
 cd "$CLONE_DIR"
-touch `date +%Y%m%d%H%M%S`.txt
-node --version
 
+echo "Running command $INPUT_COMMAND"
+eval "$INPUT_COMMAND"
 
 echo "Adding git commit"
 git add .

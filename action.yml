@@ -6,17 +6,22 @@ inputs:
     required: true
   user_email:
     description: 'Email for the git commit'
-    required: true
+    required: false
+    default: 'github-actions[bot]@users.noreply.github.com'
   user_name:
     description: 'GitHub username for the commit'
-    required: true
+    required: false
+    default: 'GitHub Actions'
   destination_head_branch:
     description: 'The branch to create to push the changes. Cannot be master or main'
     required: true
   destination_base_branch:
     description: 'The branch into which you want your code merged.'
     required: false
-    default: "main"
+    default: 'master'
+  command:
+    description: 'The command to run in the destination repository before commit'
+    required: true
   title:
     description: 'The title of the pull request'
     required: false
@@ -38,6 +43,7 @@ runs:
     - ${{ inputs.destination-base-branch }}
     - ${{ inputs.title }}
     - ${{ inputs.body }}
+    - ${{ inputs.command }}
 branding:
   icon: 'git-commit'
   color: 'green'
