@@ -22,6 +22,7 @@ git clone --depth 1  --branch $INPUT_DESTINATION_HEAD_BRANCH "https://$API_TOKEN
 
 cd "$CLONE_DIR"
 touch `date +%Y%m%d%H%M%S`.txt
+node --version
 
 
 echo "Adding git commit"
