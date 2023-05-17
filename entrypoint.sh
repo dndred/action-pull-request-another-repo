@@ -3,6 +3,8 @@
 set -e
 set -x
 
+echo "TEST TEST TEST TEST TEST"
+
 if [ -z "$INPUT_SOURCE_FOLDER" ]
 then
   echo "Source folder must be defined"
