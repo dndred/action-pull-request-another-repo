@@ -10,13 +10,6 @@ then
   return -1
 fi
 
-if [ -z "$INPUT_PULL_REQUEST_REVIEWERS" ]
-then
-  PULL_REQUEST_REVIEWERS=$INPUT_PULL_REQUEST_REVIEWERS
-else
-  PULL_REQUEST_REVIEWERS='-r '$INPUT_PULL_REQUEST_REVIEWERS
-fi
-
 CLONE_DIR=$(mktemp -d)
 
 echo "Setting git variables"
@@ -28,7 +21,7 @@ echo "Cloning destination git repository"
 git clone --depth 1  --branch $INPUT_DESTINATION_HEAD_BRANCH "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR"
 
 cd "$CLONE_DIR"
-touch CLONE_DIR
+touch "$CLONE_DIR"
 
 
 echo "Adding git commit"
@@ -39,11 +32,15 @@ then
   echo "Pushing git commit"
   git push -u origin HEAD:$INPUT_DESTINATION_HEAD_BRANCH
   echo "Creating a pull request"
-  gh pr create -t "$INPUT_TITLE" \
-               -b "$INPUT_BODY" \
-               -B $INPUT_DESTINATION_BASE_BRANCH \
-               -H $INPUT_DESTINATION_HEAD_BRANCH \
-                  $PULL_REQUEST_REVIEWERS
+
+
+  gh pr edit $INPUT_DESTINATION_HEAD_BRANCH -b "$INPUT_BODY" -t "$INPUT_TITLE"  &&
+   gh pr reopen $INPUT_DESTINATION_HEAD_BRANCH ||
+    gh pr create -t "$INPUT_TITLE" \
+                 -b "$INPUT_BODY" \
+                 -B $INPUT_DESTINATION_BASE_BRANCH \
+                 -H $INPUT_DESTINATION_HEAD_BRANCH
+
 else
   echo "No changes detected"
 fi

@@ -17,9 +17,6 @@ inputs:
     description: 'The branch into which you want your code merged.'
     required: false
     default: "main"
-  pull_request_reviewers:
-    description: 'Pull request reviewers users'
-    required: false
   title:
     description: 'The title of the pull request'
     required: false
@@ -39,7 +36,6 @@ runs:
     - ${{ inputs.user-name }}
     - ${{ inputs.destination-head-branch }}
     - ${{ inputs.destination-base-branch }}
-    - ${{ inputs.pull-request-reviewers }}
     - ${{ inputs.title }}
     - ${{ inputs.body }}
 branding:
