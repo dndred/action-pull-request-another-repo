@@ -27,7 +27,6 @@ git checkout -b $INPUT_DESTINATION_HEAD_BRANCH ||
   git checkout $INPUT_DESTINATION_HEAD_BRANCH
 
 node --version
-npm install --global yarn
 yarn --version
 
 echo "Running command $INPUT_COMMAND"
