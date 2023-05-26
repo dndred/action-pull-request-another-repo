@@ -18,16 +18,13 @@ git config --global user.email "$INPUT_USER_EMAIL"
 git config --global user.name "$INPUT_USER_NAME"
 
 echo "Cloning destination git repository"
-git clone --depth 1  --branch $INPUT_DESTINATION_HEAD_BRANCH "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR" ||
-  git clone --depth 1  "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR"
+git clone --depth 1  --branch $INPUT_DESTINATION_HEAD_BRANCH "https://$API_TOKEN_GITHUB_PREFIX$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR" ||
+  git clone --depth 1  "https://$API_TOKEN_GITHUB_PREFIX$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR"
 
 cd "$CLONE_DIR"
 
 git checkout -b $INPUT_DESTINATION_HEAD_BRANCH ||
   git checkout $INPUT_DESTINATION_HEAD_BRANCH
-
-node --version
-yarn --version
 
 echo "Running command $INPUT_COMMAND"
 eval "$INPUT_COMMAND"
